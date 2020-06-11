@@ -14,7 +14,8 @@ def index():
 
 @app.route("/home", methods=['GET', 'POST'])
 def home():
-	posts = Post.query.all()
+	page = request.args.get('page', 1, type=int)
+	posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)	
 	return render_template("home.html", posts = posts)
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -140,8 +141,13 @@ def delete_post(post_id):
 	flash(f'Post deleted', 'success')
 	return redirect(url_for('home'))
 
-@app.route("/user_post/<int:user_id>", methods =['GET','POST'] )
+@app.route("/user_post/<string:username>", methods =['GET','POST'] )
 @login_required
-def user_post(user_id):
-	posts = Post.query.filter_by(user_id = user_id).all()
-	return render_template("home.html", posts = posts)
+def user_post(username):
+	page = request.args.get('page', 1, type=int)
+	user = User.query.filter_by(username=username).first_or_404()
+	posts = Post.query\
+		.filter_by(author=user)\
+		.order_by(Post.date_posted.desc())\
+		.paginate(page=page, per_page=5)
+	return render_template("user_post.html", posts = posts, user = user)
