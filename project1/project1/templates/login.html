@@ -2,7 +2,7 @@
 
 {% block body %}
 		<div class="row justify-content-center">
-			<form class="col-md-4" method= "POST" action="{{ url_for('login', next=request.args.get('next')) }}">
+			<form class="col-md-4" method= "POST" action="{{ url_for('users.login', next=request.args.get('next')) }}">
 				{{ form.hidden_tag() }}
 				<fieldset class="form-group">
 					
@@ -58,12 +58,12 @@
 				</div>
 
 				<small class="text-muted">
-					<a href="{{ url_for('request_reset') }}">Forgot Password?</a>
+					<a href="{{ url_for('users.request_reset') }}">Forgot Password?</a>
 				</small>
 
 				<div class="border-top pt-3 ">
 					<small class="text-muted">
-						Don't Have An Account?<a class="ml-2" href="{{ url_for('register') }}">SIGN UP</a>
+						Don't Have An Account?<a class="ml-2" href="{{ url_for('users.register') }}">SIGN UP</a>
 				
 					</small>
 			

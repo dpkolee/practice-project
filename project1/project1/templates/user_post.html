@@ -9,11 +9,11 @@
             <div class="media-body">
                 <div class="article-metadata">
                 	
-                	<a class="mr-4" href="{{ url_for('user_post', username=post.author.username) }}">
+                	<a class="mr-4" href="{{ url_for('users.user_post', username=post.author.username) }}">
                         {{ post.author.username.capitalize() }}</a>
                 	<small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
                 </div>
-                <h2><a class="article-title" href="{{ url_for('edit_post', post_id = post.id) }}">
+                <h2><a class="article-title" href="{{ url_for('posts.edit_post', post_id = post.id) }}">
                     {{ post.title.capitalize() }}</a></h2>
                 <p class="article-content">{{ post.content.capitalize() }}</p>
 
@@ -24,11 +24,11 @@
         {% if page_num %}
             {% if posts.page == page_num %}
                 <a class="btn btn-info mb-4" 
-                    href="{{ url_for('user_post', username=user.username, page=page_num) }}">
+                    href="{{ url_for('users.user_post', username=user.username, page=page_num) }}">
                     {{ posts.page }}</a>
             {% else %}
                 <a class="btn btn-outline-info mb-4" 
-                    href="{{ url_for('user_post', username=user.username, page=page_num) }}">
+                    href="{{ url_for('users.user_post', username=user.username, page=page_num) }}">
                     {{ page_num }}</a>
             {% endif %}
         {% else %}

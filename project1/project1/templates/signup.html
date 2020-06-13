@@ -3,7 +3,7 @@
 {% block body %}
 		
 		<div class="row justify-content-md-center">
-			<form class="col-md-4" method="POST" action="{{ url_for('register') }}">
+			<form class="col-md-4" method="POST" action="{{ url_for('users.register') }}">
 				{{ form.hidden_tag() }}
 				<fieldset class="form-group">
 					
@@ -95,7 +95,7 @@
 
 				<div class="border-top pt-3 ">
 					<small class="text-muted">
-						Already Have An Account?<a class="ml-2" href="{{ url_for('login') }}">SIGN IN</a>
+						Already Have An Account?<a class="ml-2" href="{{ url_for('users.login') }}">SIGN IN</a>
 					</small>
 			
 				</div>	
